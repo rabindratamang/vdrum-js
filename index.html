@@ -7,6 +7,34 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <audio data-key="90" src="/assests/sounds/kick.ogg"></audio>
+    <audio data-key="88" src="/assests/sounds/kick.ogg"></audio>
+    <audio data-key="67" src="/assests/sounds/snare1.ogg"></audio>
+    <audio data-key="86" src="/assests/sounds/snare1.ogg"></audio>
+    <audio data-key="83" src="/assests/sounds/hihat1.ogg"></audio>
+    <audio data-key="68" src="/assests/sounds/open1.ogg"></audio>
+    <audio data-key="70" src="/assests/sounds/tom.wav"></audio>
+    <audio data-key="84" src="/assests/sounds/crash1.ogg"></audio>
+    <audio data-key="89" src="/assests/sounds/crash2.ogg"></audio>
+    <audio data-key="85" src="/assests/sounds/ride.wav"></audio>
+    <audio data-key="73" src="/assests/sounds/china1.ogg"></audio>
+
+    <script>
+        window.addEventListener('keydown',function(e){
+           audioPlayer(e);
+        })
+
+
+        function audioPlayer(e){
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            if(!audio) return;
+
+            //if audio is still playing
+            if (!audio.paused)
+                audio.cloneNode().play();
+            else
+                audio.play();
+        }
+    </script>
 </body>
 </html>
