@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+
+    Master Volume <input type="range" name="points" min="0" max="1" step="0.1">
+
     <audio data-key="90" src="/assests/sounds/kick.ogg"></audio>
     <audio data-key="88" src="/assests/sounds/kick.ogg"></audio>
     <audio data-key="67" src="/assests/sounds/snare1.ogg"></audio>
@@ -21,19 +24,23 @@
 
     <script>
         window.addEventListener('keydown',function(e){
-           audioPlayer(e);
+            let volume = document.querySelector('input[type=range]').value;
+            audioPlayer(e, volume);
         })
 
 
-        function audioPlayer(e){
+        function audioPlayer(e, volume){
             const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
             if(!audio) return;
-
+            audio.volume = volume;
             //if audio is still playing
-            if (!audio.paused)
-                audio.cloneNode().play();
-            else
+            if (!audio.paused){
+                let audioClone = audio.cloneNode();
+                audioClone.volume = volume;
+                audioClone.play();
+            }else{
                 audio.play();
+            }
         }
     </script>
 </body>
