@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Vdrum | Get ready to rock \m/</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <h3>Master Volume</h3>
+    <input class="slider" type="range" name="points" min="0" max="1" step="0.1">
+
+    <audio data-key="90" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/kick.ogg"></audio>
+    <audio data-key="88" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/kick.ogg"></audio>
+    <audio data-key="67" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/snare1.ogg"></audio>
+    <audio data-key="86" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/snare1.ogg"></audio>
+    <audio data-key="83" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/hihat1.ogg"></audio>
+    <audio data-key="68" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/open1.ogg"></audio>
+    <audio data-key="70" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/tom.wav"></audio>
+    <audio data-key="84" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/crash1.ogg"></audio>
+    <audio data-key="89" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/crash2.ogg"></audio>
+    <audio data-key="85" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/ride.wav"></audio>
+    <audio data-key="73" src="https://raw.githubusercontent.com/rabindratamang/vdrum-js/master/assests/sounds/china1.ogg"></audio>
+
+    <script>
+        window.addEventListener('keydown',function(e){
+            let volume = document.querySelector('input[type=range]').value;
+            audioPlayer(e, volume);
+        })
+
+
+        function audioPlayer(e, volume){
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            if(!audio) return;
+            audio.volume = volume;
+            //if audio is still playing
+            if (!audio.paused){
+                let audioClone = audio.cloneNode();
+                audioClone.volume = volume;
+                audioClone.play();
+            }else{
+                audio.play();
+            }
+        }
+    </script>
 </body>
 </html>
